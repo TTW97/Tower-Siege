@@ -12,11 +12,16 @@ var ball;
 var slingShot;
 var polygon_img;
 var score;
+var hour;
+var backgroundImg;
+var bg;
 
 
 function preload() {
   //This gives the polygon an image
   polygon_img = loadImage("polygon.png");
+
+  getTime();
 }
 
 function setup() {
@@ -58,7 +63,12 @@ function setup() {
 function draw() {
 
   //This is the bckground color
-  background("gray");
+
+  if (backgroundImg) {
+  
+    background(backgroundImg);
+
+  }
 
   //This displays two texts
   textSize(20);
@@ -123,4 +133,36 @@ function keyPressed() {
 
   }
   
+}
+
+async function getTime() {
+
+  console.log();
+
+  var response = await fetch("http://worldtimeapi.org/api/timezone/America/Los_Angeles");
+  var responseJSON = await response.json();
+
+  
+  var datetime = responseJSON.datetime;
+
+  
+
+  hour = datetime.slice(11,13);
+
+  if (hour >= 06 && hour <= 18) {
+
+    bg = "bg.png";
+    console.log(bg);
+
+  }
+
+  else {
+
+    bg = "bg2.jpg";
+
+  }
+
+  backgroundImg = loadImage(bg);
+  
+
 }
