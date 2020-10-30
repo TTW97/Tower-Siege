@@ -139,7 +139,7 @@ async function getTime() {
 
   console.log();
 
-  var response = await fetch("http://worldtimeapi.org/api/timezone/America/Los_Angeles");
+  var response = await fetch("https://worldtimeapi.org/api/timezone/America/Los_Angeles");
   var responseJSON = await response.json();
 
   
